@@ -1,0 +1,17 @@
+//
+// Prefix header for all source files of the 'BubblePix' target in the 'BubblePix' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iPhone SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+	#import <UIKit/UIKit.h>
+	#import <Foundation/Foundation.h>
+#endif
+
+#define RAD_2_DEG(a)	((double)a * 180.00l/PI)
+#define DEG_2_RAD		0.01745329252l
