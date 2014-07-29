@@ -11,7 +11,7 @@
 
 #ifndef __RENDERABLE_H__
 #define __RENDERABLE_H__
-
+#ifdef __cplusplus
 
 
 class Renderable : public IRenderable
@@ -34,5 +34,5 @@ public:
     
 };
 
-
+#endif
 #endif

@@ -17,7 +17,7 @@
 {
     NSMutableArray* assets;
 }
-@property( nonatomic, assign ) IBOutlet id<EyeLevelAssetManagerDelegate> delegate;
+@property( nonatomic, weak ) IBOutlet id<EyeLevelAssetManagerDelegate> delegate;
 
 + (EyeLevelAssetManager *) sharedInstance;
 

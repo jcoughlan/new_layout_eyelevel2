@@ -35,7 +35,7 @@ static EyeLevelAssetManager* sharedInstance = nil;
 }
 
 + (id)allocWithZone:(NSZone *)zone {
-    return [[self sharedInstance] retain];
+    return [self sharedInstance];
 }
 - (id)copyWithZone:(NSZone *)zone {
     return self;
@@ -52,9 +52,8 @@ static EyeLevelAssetManager* sharedInstance = nil;
 -(void) dealloc
 {
     if( assets )
-        [assets release], assets = nil;
+        assets = nil;
     
-    [super dealloc];
 }
 
 -(NSArray*) getAssetPaths
@@ -120,13 +119,12 @@ static EyeLevelAssetManager* sharedInstance = nil;
                         [delegate onAssetLoaded:pointMarker];
                     
                 }
-                [coordinateConverter release];
                 
                 
             }
             @catch (NSException *exception) 
             {
-                [[[[UIAlertView alloc] initWithTitle:exception.name message:exception.description delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil] autorelease] show];
+                [[[UIAlertView alloc] initWithTitle:exception.name message:exception.description delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil] show];
             }
         }
     }  
@@ -176,7 +174,7 @@ static EyeLevelAssetManager* sharedInstance = nil;
         }
         @catch (NSException *exception) 
         {
-            [[[[UIAlertView alloc] initWithTitle:exception.name message:exception.description delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil] autorelease] show];
+            [[[UIAlertView alloc] initWithTitle:exception.name message:exception.description delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil] show];
             return NO;
         }
 

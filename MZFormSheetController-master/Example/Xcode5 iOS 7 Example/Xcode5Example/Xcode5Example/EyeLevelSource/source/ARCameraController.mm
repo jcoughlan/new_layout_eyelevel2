@@ -124,12 +124,8 @@ static const double kUserAccelerationLpfCutoffFrequency = 10.0;
     [m_pLocationManager stopUpdatingHeading];
 	//[m_pLocationManager stopUpdatingLocation];
 	[m_pLocationManager setDelegate:nil];
-	[m_pLocationManager release];
     
-    [m_ReferenceAttitude release];
-    [m_MotionManager release];
     
-    [super dealloc];
 }
 
 #pragma mark - Getters
@@ -200,7 +196,7 @@ static const double kUserAccelerationLpfCutoffFrequency = 10.0;
         CMDeviceMotion *deviceMotion = m_MotionManager.deviceMotion;      
         CMAttitude *attitude = deviceMotion.attitude;
         
-        m_ReferenceAttitude = [attitude retain];
+        m_ReferenceAttitude = attitude;
         m_ReferencePitch = attitude.pitch;
         m_ReferenceRoll = attitude.roll;
         m_ReferenceYaw = attitude.yaw + ( DEG_2_RAD * (  newHeading.trueHeading + 90.0l ));
@@ -222,7 +218,7 @@ static const double kUserAccelerationLpfCutoffFrequency = 10.0;
         reset = 1;
         m_bApplyYawReset = false;
         
-        m_ReferenceAttitude = [attitude retain];
+        m_ReferenceAttitude = attitude;
         m_ReferenceYaw = attitude.yaw + ( DEG_2_RAD * (  newHeading.trueHeading + 90.0l ));
         
         //m_ReferenceYaw = (attitude.yaw) + DEG_2_RAD * ( 90);
@@ -245,7 +241,6 @@ static const double kUserAccelerationLpfCutoffFrequency = 10.0;
 											   otherButtonTitles: nil];
 	
 	[pAlertView show];
-	[pAlertView release];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status

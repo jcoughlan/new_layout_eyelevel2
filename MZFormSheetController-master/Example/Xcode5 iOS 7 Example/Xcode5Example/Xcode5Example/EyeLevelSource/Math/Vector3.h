@@ -5,8 +5,8 @@
 //#include "Maths.h"
 
 #define EQUALS_EPSILON 1.1f
-
-class Vector3 
+#ifdef __cplusplus
+class Vector3
 {
 	
 public:
@@ -104,5 +104,5 @@ inline Vector3 operator-(const Vector3 &v)
     return Vector3(-v.x, -v.y, -v.z);
 }
 
-
+#endif
 #endif // VECTOR_3_H

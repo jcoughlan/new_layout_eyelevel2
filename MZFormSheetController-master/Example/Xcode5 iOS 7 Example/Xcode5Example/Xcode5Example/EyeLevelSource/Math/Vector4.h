@@ -1,6 +1,6 @@
 #ifndef VECTOR_4_H
 #define VECTOR_4_H
-
+#ifdef __cplusplus
 #include "Vector3.h"
 
 class Vector4
@@ -49,5 +49,5 @@ class Vector4
 		Vector4 operator-(const Vector4 &vec);
 		
 	};
-
+#endif
 #endif // VECTOR_4_H

@@ -13,7 +13,7 @@
 
 #include "EAGLDefines.h"
 #include <memory.h>
-#include "GLModel.h"
+#include "GLModel.hpp"
 
 GLint uniforms[NUM_UNIFORMS];
 GLint modelUniforms[NUM_UNIFORMS];
@@ -58,13 +58,11 @@ GLint modelUniforms[NUM_UNIFORMS];
 		if (!context || ![EAGLContext setCurrentContext:context] || ![self createFramebuffers] )
         {
 			NSLog(@"Failed to set ES context current");
-            [self release];
             return nil;
 		}
 		
 		if( ![self loadShaders:"modelShader" glShader:&m_modelShader glUniforms:modelUniforms] || ![self loadShaders:"Shader" glShader:&m_defaultShader glUniforms:uniforms])
         {
-            [self release];
             return nil;
         }
 
@@ -98,11 +96,9 @@ GLint modelUniforms[NUM_UNIFORMS];
 		[EAGLContext setCurrentContext:nil];
 	}
     
-    [context release];
     
 	context = nil;
 	
-    [super dealloc];
 }
 
 - (EAGLContext *)context

@@ -115,11 +115,9 @@
 	} while (![scanner isAtEnd]);
 	
 	// Cleanup
-	[scanner release];
 	
 	// Decode HTML entities and return
-	NSString *retString = [[result stringByDecodingHTMLEntities] retain];
-	[result release];
+	NSString *retString = [result stringByDecodingHTMLEntities];
 	
 	// Drain
 	//[pool drain];
@@ -192,9 +190,7 @@
 	} while (![scanner isAtEnd]);
 	
 	// Cleanup & return
-	[scanner release];
-	NSString *retString = [[NSString stringWithString:result] retain];
-	[result release];
+	NSString *retString = [NSString stringWithString:result];
 	
 	// Drain
 	//[pool drain];
@@ -239,11 +235,9 @@
 	}
 	
 	// Cleanup
-	[scanner release];
 	
 	// Return
-	NSString *retString = [[NSString stringWithString:result] retain];
-	[result release];
+	NSString *retString = [NSString stringWithString:result];
 	
 	// Drain
 	//[pool drain];
@@ -258,8 +252,8 @@
 //	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     NSString *pattern = @"(?<!=\")\\b((http|https):\\/\\/[\\w\\-_]+(\\.[\\w\\-_]+)+([\\w\\-\\.,@?^=%%&amp;:/~\\+#]*[\\w\\-\\@?^=%%&amp;/~\\+#])?)";
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
-    NSString *modifiedString = [[regex stringByReplacingMatchesInString:self options:0 range:NSMakeRange(0, [self length])
-                                                           withTemplate:@"<a href=\"$1\" class=\"linkified\">$1</a>"] retain];
+    NSString *modifiedString = [regex stringByReplacingMatchesInString:self options:0 range:NSMakeRange(0, [self length])
+                                                           withTemplate:@"<a href=\"$1\" class=\"linkified\">$1</a>"];
     //[pool drain];
     return modifiedString ;
 }
@@ -291,7 +285,6 @@
 		if (tag) {
 			NSString *t = [[NSString alloc] initWithFormat:@"%@>", tag];
 			[tags addObject:t];
-			[t release];
 		}
 		
 	} while (![scanner isAtEnd]);
@@ -325,11 +318,9 @@
 	}
 	
 	// Remove multi-spaces and line breaks
-	finalString = [[result stringByRemovingNewLinesAndWhitespace] retain];
+	finalString = [result stringByRemovingNewLinesAndWhitespace];
 	
 	// Cleanup
-	[result release];
-	[tags release];
 	
 	// Drain
 	//[pool drain];

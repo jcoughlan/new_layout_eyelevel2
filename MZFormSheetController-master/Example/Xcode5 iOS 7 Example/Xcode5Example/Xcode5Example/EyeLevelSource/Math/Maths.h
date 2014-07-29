@@ -1,6 +1,6 @@
 #ifndef PI_MATHS_H
 #define PI_MATHS_H
-
+#ifdef __cplusplus
 #include "math.h"
 #include "stdlib.h"
 
@@ -27,5 +27,5 @@ Vector2 IVector2ToVector2( const IVector2 &v );
 IVector2 Vector2ToIVector2( const Vector2 &v );
 
 
-
+#endif
 #endif // PI_MATHS_H

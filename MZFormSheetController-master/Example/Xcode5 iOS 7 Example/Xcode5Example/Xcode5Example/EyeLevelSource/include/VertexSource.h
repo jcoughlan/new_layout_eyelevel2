@@ -9,7 +9,7 @@
 
 #ifndef __VERTEX_SOURCE_H__
 #define __VERTEX_SOURCE_H__
-
+#ifdef __cplusplus
 #include "Vector4.h"
 #include "Vector3.h"
 #include "Vector2.h"
@@ -73,5 +73,5 @@ public:
 	Vector4 m_Color;
 	Vector2 m_TexCoords;	
 };
-
+#endif
 #endif

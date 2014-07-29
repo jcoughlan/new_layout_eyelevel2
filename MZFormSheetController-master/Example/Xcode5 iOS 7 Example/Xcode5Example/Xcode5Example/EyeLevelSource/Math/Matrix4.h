@@ -1,6 +1,6 @@
 #ifndef	_MATRIX4_H_
 #define	_MATRIX4_H_
-
+#ifdef __cplusplus
 #include "Vector3.h"
 #include "Matrix33.h"
 #include "Quaternion.h"
@@ -600,5 +600,5 @@ inline void Matrix4::RotateZYX( const Vector3& euAngles )
 	XM.RotateX( euAngles.x );
 	*this = ZM*YM*XM;
 }
-
+#endif
 #endif //__MATRIX4_H__

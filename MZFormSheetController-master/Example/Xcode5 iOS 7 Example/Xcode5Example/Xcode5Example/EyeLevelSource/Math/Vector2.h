@@ -1,9 +1,9 @@
 #ifndef VECTOR_2_H
 #define VECTOR_2_H
-
+#ifdef __cplusplus
 //#include "Maths.h"
 
-class Vector2 
+class Vector2
 	{
 	public:
 		
@@ -52,5 +52,5 @@ class Vector2
 			};
 		};
 	};
-
+#endif
 #endif // VECTOR_2_H

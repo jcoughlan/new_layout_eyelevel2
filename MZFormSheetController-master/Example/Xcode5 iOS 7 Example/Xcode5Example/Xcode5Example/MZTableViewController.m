@@ -26,7 +26,11 @@
         [self.navigationController.formSheetController setNeedsStatusBarAppearanceUpdate];
     }];
 }
-
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+	// Return YES for supported orientations
+	return (interfaceOrientation == UIInterfaceOrientationLandscapeRight);
+}
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent; // your own style

@@ -7,7 +7,7 @@
 //\=====================================================================================
 #ifndef __INDEX_BUFFER_H__
 #define __INDEX_BUFFER_H__
-
+#ifdef __cplusplus
 #include "Maths.h"
 #include <OpenGLES//ES2//gl.h>
 #include <OpenGLES//ES2//glext.h>
@@ -36,5 +36,5 @@ private:
 	unsigned int	m_IndexType;
 	
 };
-
+#endif
 #endif

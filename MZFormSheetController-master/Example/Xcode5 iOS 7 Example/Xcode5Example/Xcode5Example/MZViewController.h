@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-
 @interface MZViewController : UIViewController <MKMapViewDelegate>
+{}
 - (IBAction)showFormSheet:(UIButton *)sender;
 @end

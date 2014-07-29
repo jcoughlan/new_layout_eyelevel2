@@ -7,7 +7,7 @@
  *
  */
 #include "Vector3.h"
-
+#ifdef __cplusplus
 class Plane
 {
 public:
@@ -30,3 +30,5 @@ private:
 	float		m_PlaneD;
 
 };
+
+#endif

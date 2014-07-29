@@ -28,28 +28,59 @@
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)    name:UIDeviceOrientationDidChangeNotification  object:nil];
     if (self.interfaceOrientation == UIInterfaceOrientationPortrait || self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
         isPortrait = YES;
+	
+	[self adjustCameraToWindow:self.interfaceOrientation];
 }
 
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+	// Return YES for supported orientations
+	return (interfaceOrientation == UIInterfaceOrientationLandscapeRight);
+}
 
 - (void)orientationChanged:(NSNotification *)notification{
     [self adjustViewsForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
 }
 
+-(void) adjustCameraToWindow:(UIInterfaceOrientation) orientation
+{
+	AVCaptureVideoPreviewLayer *cameraPreview = captureVideoPreviewLayer;
+	if (cameraPreview) {
+		float degreesToRotate = 0.0;
+        if (orientation==UIInterfaceOrientationPortrait) {
+            degreesToRotate = 0.0;
+        } else if (orientation==UIInterfaceOrientationLandscapeLeft) {
+            degreesToRotate = 90.0;
+        } else if (orientation==UIInterfaceOrientationLandscapeRight) {
+            degreesToRotate = 270.0;
+        }
+		cameraPreview.transform =CATransform3DMakeRotation(degreesToRotate / 180.0 * M_PI, 0.0, 0.0, 1.0);
+		//  cameraPreview.frame = self.UIImageView.bounds;
+		
+		[cameraPreview setNeedsDisplay];
+		[cameraPreview displayIfNeeded ];
+		
+		CGRect bounds = self.UIImageView.bounds;
+		[captureVideoPreviewLayer setFrame:bounds];
+    }
+	
+}
+
 - (void) adjustViewsForOrientation:(UIInterfaceOrientation) orientation {
     
-    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
+	if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
     {
         //load the portrait view
-         isPortrait = YES;
+		isPortrait = YES;
         NSLog(@"Going to portrait");
         if (fullScreen)
         {
-           
             MZFormSheetController *formSheet = self.navigationController.formSheetController;
             CGRect screenBounds = [[UIScreen mainScreen] bounds];
             formSheet.presentedFormSheetSize = CGSizeMake(screenBounds.size.width, screenBounds.size.height);
             [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
-                
+                [self adjustCameraToWindow:orientation];
             }];
         }
         else
@@ -58,7 +89,8 @@
             CGRect screenBounds = [[UIScreen mainScreen] bounds];
             formSheet.presentedFormSheetSize = CGSizeMake(screenBounds.size.width* 0.9f, screenBounds.size.height*0.9f);
             [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
-                
+				[self adjustCameraToWindow:orientation];
+				
             }];
         }
     }
@@ -73,7 +105,8 @@
             CGRect screenBounds = [[UIScreen mainScreen] bounds];
             formSheet.presentedFormSheetSize = CGSizeMake(screenBounds.size.height, screenBounds.size.width);
             [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
-                
+				[self adjustCameraToWindow:orientation];
+				
             }];
         }
         else
@@ -82,7 +115,8 @@
             CGRect screenBounds = [[UIScreen mainScreen] bounds];
             formSheet.presentedFormSheetSize = CGSizeMake(screenBounds.size.height* 0.9f, screenBounds.size.width*0.9f);
             [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
-                
+				[self adjustCameraToWindow:orientation];
+				
             }];
         }
     }
@@ -94,7 +128,7 @@
     AVCaptureSession *session = [[AVCaptureSession alloc] init];
 	session.sessionPreset = AVCaptureSessionPresetPhoto;
     
-	AVCaptureVideoPreviewLayer *captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
+	captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
     [captureVideoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
     
 	captureVideoPreviewLayer.frame = self.UIImageView.bounds;
@@ -141,7 +175,7 @@
         [alert show];
         return;
     }
-   // [session addInput:input];
+	// [session addInput:input];
     
     
     stillImageOutput = [[AVCaptureStillImageOutput alloc] init];
@@ -159,7 +193,7 @@
     
     // Access to form sheet controller
     MZFormSheetController *controller = self.navigationController.formSheetController;
-    controller.shouldDismissOnBackgroundViewTap = YES;
+	controller.shouldDismissOnBackgroundViewTap = YES;
     
 }
 
@@ -238,7 +272,7 @@
             }];
             fullScreen = YES;
         }
-
+		
     }
 }
 

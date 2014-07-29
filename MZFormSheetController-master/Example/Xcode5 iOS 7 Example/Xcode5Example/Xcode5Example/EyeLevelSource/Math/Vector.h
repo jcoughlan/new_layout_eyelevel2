@@ -2,7 +2,7 @@
 #define VECTOR_MATHS_H
 
 //#include "Maths.h"
-
+#ifdef __cplusplus
 class IVector2
 	{
 	public:
@@ -129,5 +129,5 @@ inline double rb_random()
 	return (double)genrand() * 2.3283064365386963e-10;	// reals: [0,1)-interval
 }
 
-
+#endif
 #endif // VECTOR_MATHS_H

@@ -8,7 +8,7 @@
 
 #ifndef __IRENDERABLE_H__
 #define __IRENDERABLE_H__
-
+#ifdef __cplusplus
 #include "Matrix4.h"
 
 class IRenderable 
@@ -21,5 +21,5 @@ public:
     virtual bool isVisible() = 0;
 
 };
-
+#endif
 #endif //__IRENDERABLE_H__

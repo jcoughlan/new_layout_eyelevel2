@@ -8,10 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MKAnnotation.h>
-#include "GLModel.h"
+#include "GLModel.hpp"
 
 @class ZipFile;
-
 
 @interface EyeLevelAsset : NSObject<MKAnnotation>
 {
@@ -24,10 +23,10 @@
 
 @property( nonatomic, assign )          CLLocationCoordinate2D coordinate;
 @property( nonatomic, copy )            NSString*	title;
-@property( nonatomic, retain )          NSString*	thumbnailPath;
-@property( nonatomic, retain )          NSString*	objPath;
-@property( nonatomic, retain )          NSString*	surroundingOBJPath;
-@property( nonatomic, retain )          NSString*	textureMapPath;
+@property( nonatomic, strong )          NSString*	thumbnailPath;
+@property( nonatomic, strong )          NSString*	objPath;
+@property( nonatomic, strong )          NSString*	surroundingOBJPath;
+@property( nonatomic, strong )          NSString*	textureMapPath;
  
 
 

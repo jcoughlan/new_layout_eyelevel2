@@ -64,7 +64,7 @@
     
 }
 
-@property (nonatomic, retain) EAGLContext *context;
+@property (nonatomic, strong) EAGLContext *context;
 
 //-(void)setUpGLViewport;
 -(void)setCameraController:(id<CameraControllerDelegate>)delegate;

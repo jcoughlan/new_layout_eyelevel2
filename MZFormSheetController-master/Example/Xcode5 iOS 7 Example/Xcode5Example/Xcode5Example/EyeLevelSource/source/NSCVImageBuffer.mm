@@ -29,7 +29,6 @@
 -(void)dealloc
 {
 	CVPixelBufferRelease(imageBuffer);
-	[super dealloc];
 }
 
 @end

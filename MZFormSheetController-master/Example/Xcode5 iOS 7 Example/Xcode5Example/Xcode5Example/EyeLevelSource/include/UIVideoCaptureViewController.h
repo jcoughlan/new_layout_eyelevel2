@@ -76,8 +76,8 @@ class RenderableInstance;
     
     int modelNumber;
 }
-@property( nonatomic, retain ) IBOutlet UIView* horizontalSpiritLevelMarker;
-@property( nonatomic, retain ) IBOutlet UIView* verticalSpiritLevelMarker;
+@property( nonatomic, strong ) IBOutlet UIView* horizontalSpiritLevelMarker;
+@property( nonatomic, strong ) IBOutlet UIView* verticalSpiritLevelMarker;
 //\======================================================
 //\Initialise the CoreVideo bits and pieces needed to capture video feed
 -(void)initDeviceInputCapture;

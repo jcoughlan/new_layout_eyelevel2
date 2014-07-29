@@ -43,7 +43,7 @@
         NSString* elvFilename = [elvFilePath lastPathComponent];
         NSLog(@"Initialising EyeLevelAsset - %@", elvFilename);
         
-        ZipFile *unzipFile= [[[ZipFile alloc] initWithFileName:elvFilePath mode:ZipFileModeUnzip] autorelease];
+        ZipFile *unzipFile= [[ZipFile alloc] initWithFileName:elvFilePath mode:ZipFileModeUnzip];
         @try 
         {
             NSDictionary* manifestDict = [EyeLevelAsset loadManifestFromZip:unzipFile]; 
@@ -84,7 +84,6 @@
 			
 			CLLocationCoordinate2D_OSGB* coordinateConverter = [[CLLocationCoordinate2D_OSGB alloc] init];
 			self.coordinate =  [coordinateConverter convertOSGB36toWGS84:[coordinateConverter OSGB36locationFromOSGB36Grid: Vector2(models[0]->getPosition().x, -models[0]->getPosition().z) ]];
-			[coordinateConverter release];
 			NSLog(@"model is at pos %f", models[0]-> getPosition().x);
 
 			        
@@ -115,22 +114,16 @@
 
 -( void ) dealloc
 {
-	self.thumbnailPath = nil;
-	self.objPath = nil;
-	self.surroundingOBJPath = nil;
-	self.textureMapPath = nil;
-	self.thumbnailPath = nil;
 	
 	//delete models[];
 	delete surroundingModel;
 	
-	[super dealloc];
 }
 
 #pragma mark - Public Methods
 +(EyeLevelAsset*) eyeLevelAssetFromELVFile:(NSString*)elvFilePath
 {
-    return [[[EyeLevelAsset alloc] initWithELVFile:elvFilePath] autorelease];
+    return [[EyeLevelAsset alloc] initWithELVFile:elvFilePath];
 }
 
 #pragma mark - Private Methods
@@ -152,7 +145,7 @@
     int bytesRead = 0;
     do
     {
-        NSMutableData *xmlDataChunk= [[[NSMutableData alloc] initWithLength:256] autorelease];
+        NSMutableData *xmlDataChunk= [[NSMutableData alloc] initWithLength:256];
         bytesRead = [inStream readDataWithBuffer:xmlDataChunk];
         [xmlDataChunk setLength:bytesRead];
         [xmlData appendData:xmlDataChunk];
@@ -162,7 +155,6 @@
     NSError* error = nil;
     NSDictionary* xmlDict = [XMLReader dictionaryForXMLData:xmlData error:&error];
     
-    [xmlData release];
     
     if( error )
     {
@@ -194,7 +186,7 @@
     int bytesRead = 0;
     do
     {
-        NSMutableData *fileDataChunk= [[[NSMutableData alloc] initWithLength:256] autorelease];
+        NSMutableData *fileDataChunk= [[NSMutableData alloc] initWithLength:256];
         bytesRead = [inStream readDataWithBuffer:fileDataChunk];
         [fileDataChunk setLength:bytesRead];
         [fileData appendData:fileDataChunk];
@@ -210,7 +202,6 @@
     
     
     BOOL writeSuccess = [fileData writeToURL:[NSURL fileURLWithPath:destinationPath] atomically:YES];
-    [fileData release];
     
     if( !writeSuccess )
     {
@@ -298,7 +289,7 @@
             int bytesRead = 0;
             do
             {
-                NSMutableData *fileDataChunk= [[[NSMutableData alloc] initWithLength:256] autorelease];
+                NSMutableData *fileDataChunk= [[NSMutableData alloc] initWithLength:256];
                 bytesRead = [inStream readDataWithBuffer:fileDataChunk];
                 [fileDataChunk setLength:bytesRead];
                 [fileData appendData:fileDataChunk];

@@ -17,16 +17,16 @@
     
     CLLocationCoordinate2D          coordinate;
 
-    id<EyeLevelUserLocationDelegate>   delegate;
+    id<EyeLevelUserLocationDelegate>   __weak delegate;
 }
 
 
 @property( nonatomic )      BOOL    manualPositioning;
-@property( nonatomic, assign )      id<EyeLevelUserLocationDelegate> delegate;
+@property( nonatomic, weak )      id<EyeLevelUserLocationDelegate> delegate;
 @property( nonatomic, readonly)     CLLocationCoordinate2D coordinate;
 @property( nonatomic, copy )        NSString* title;
-@property( nonatomic, retain )      CLLocation* gpsLocation;
-@property( nonatomic, retain )      CLLocation* manualLocation;
+@property( nonatomic, strong )      CLLocation* gpsLocation;
+@property( nonatomic, strong )      CLLocation* manualLocation;
 
 @end
 

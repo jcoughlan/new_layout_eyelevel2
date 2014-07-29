@@ -16,10 +16,11 @@
     BOOL haveImage;
     BOOL fullScreen;
     BOOL isPortrait;
+	AVCaptureVideoPreviewLayer *captureVideoPreviewLayer;
 }
 - (IBAction)OnExpandButtonClicked:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *expandButton;
-@property (nonatomic, retain) AVCaptureStillImageOutput * stillImageOutput;
+@property (nonatomic, strong) AVCaptureStillImageOutput * stillImageOutput;
 @property (weak, nonatomic) IBOutlet UIImageView *UIImageView;
 @property (nonatomic, assign) BOOL showStatusBar;
 @end

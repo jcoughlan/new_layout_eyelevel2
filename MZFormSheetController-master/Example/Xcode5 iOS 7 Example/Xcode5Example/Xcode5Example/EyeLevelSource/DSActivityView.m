@@ -137,12 +137,7 @@ static DSActivityView *dsActivityView = nil;
 
 - (void)dealloc;
 {
-    [_activityLabel release];
-    [_activityIndicator release];
-    [_borderView release];
-    [_originalView release];
     
-    [super dealloc];
     
     dsActivityView = nil;
 }
@@ -167,7 +162,6 @@ static DSActivityView *dsActivityView = nil;
     [dsActivityView removeFromSuperview];
     
     // Remove the global reference:
-    [dsActivityView release];
     dsActivityView = nil;
 }
 

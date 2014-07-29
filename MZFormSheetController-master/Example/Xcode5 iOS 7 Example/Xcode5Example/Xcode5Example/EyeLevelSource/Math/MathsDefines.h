@@ -18,8 +18,8 @@
 #define PI4   		0.785398163f	 
 #define PI8   		0.392699081f
 
-//#define RAD_2_DEG(a)	((float)a * 180.0f/PI)
-//#define DEG_2_RAD		0.01745329252f
+#define RAD_2_DEG(a)	((float)a * 180.0f/PI)
+#define DEG_2_RAD		0.01745329252f
 
 #define CLAMP( x, min, max ) ( (x) > (max) ? (max) : ( (x) < (min) ? (min) : (x) ) )
 

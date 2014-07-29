@@ -40,11 +40,6 @@
     return self;
 }
 
--(void) dealloc
-{
-    self.title = nil;
-	[super dealloc];
-}
 
 #pragma mark - MKAnnotation
 
@@ -87,7 +82,6 @@
     if( delegate )
         [delegate eyeLevelUserLocation:self didUpdateToLocation:newLocation];
     
-    [newLocation release];
 }
 
 #pragma mark - CLLocationManagerDelegateMethods
@@ -113,11 +107,11 @@
 {
 	NSLog(@"Location manager failed big time: %@", error.localizedDescription );
 	
-	[[[[UIAlertView alloc] initWithTitle: @"Error"
+	[[[UIAlertView alloc] initWithTitle: @"Error"
                                  message: @"Failed to locate your position. Is Location Services enabled? Are you underground?"
                                 delegate: nil
                        cancelButtonTitle: @"Dismiss"
-                       otherButtonTitles: nil] autorelease] show];
+                       otherButtonTitles: nil] show];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status

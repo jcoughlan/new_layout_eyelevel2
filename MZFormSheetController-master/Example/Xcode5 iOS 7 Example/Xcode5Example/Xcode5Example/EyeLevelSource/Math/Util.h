@@ -9,7 +9,7 @@
 
 #ifndef __COLLISION_DETECTION_H__
 #define __COLLISION_DETECTION_H__
-
+#ifdef __cplusplus
 #include "Quaternion.h"
 #include "Vector3.h"
 
@@ -21,5 +21,5 @@ public:
 	static bool RaySphereIntersect(const Vector3 &p, const Vector3 &d, float r, float  &i1, float &i2);
 	
 };
-
+#endif
 #endif

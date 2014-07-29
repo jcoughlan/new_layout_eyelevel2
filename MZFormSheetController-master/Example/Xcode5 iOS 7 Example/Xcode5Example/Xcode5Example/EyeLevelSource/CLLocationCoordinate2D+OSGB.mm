@@ -8,7 +8,7 @@
 
 #import "CLLocationCoordinate2D+OSGB.h"
 #import "Vector3.h"
-
+#import "MathsDefines.h"
 @interface CLLocationCoordinate2D_OSGB(Private)
 -(CLLocationCoordinate2D) convert: (CLLocationCoordinate2D) p1 withSourceEllipse: (NSDictionary *) e1 withTransform: (NSDictionary *) t withTargetEllipse: (NSDictionary *) e2;
 @end
@@ -28,8 +28,8 @@
                                                              forKeys: [NSArray arrayWithObjects: @"a", @"b", @"f", nil]];
         
         // Create the ellipse set
-        ellipse = [[NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: wgs84, airy1830, nil] 
-                                               forKeys: [NSArray arrayWithObjects: @"WGS84", @"Airy1830", nil]] retain];
+        ellipse = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: wgs84, airy1830, nil]
+                                               forKeys: [NSArray arrayWithObjects: @"WGS84", @"Airy1830", nil]] ;
         
         // Transformation constants
         NSDictionary *hWGS84toOSGB36 = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: 
@@ -53,20 +53,13 @@
                                                                    forKeys: [NSArray arrayWithObjects: @"tx", @"ty", @"tz", @"rx", @"ry", @"rz", @"s", nil]];
         
         // Create the helmert set
-        helmert = [[NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: hWGS84toOSGB36, hOSGB36toWGS84, nil] 
-                                               forKeys: [NSArray arrayWithObjects: @"WGS84toOSGB36", @"OSGB36toWGS84", nil]] retain];
+        helmert = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: hWGS84toOSGB36, hOSGB36toWGS84, nil]
+                                               forKeys: [NSArray arrayWithObjects: @"WGS84toOSGB36", @"OSGB36toWGS84", nil]] ;
     }
     
     return self;
 }
 
--(void) dealloc
-{
-    [ellipse release];
-    [helmert release];
-    
-    [super dealloc];
-}
 
 
 -( Vector3 ) OSGB36GridFromWGS84Location:(CLLocationCoordinate2D) location

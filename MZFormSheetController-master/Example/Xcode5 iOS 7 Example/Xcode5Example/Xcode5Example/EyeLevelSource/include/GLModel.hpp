@@ -8,7 +8,6 @@
 #ifndef GLMODEL_H
 #define GLMODEL_H
 
-
 #include "Renderable.h"
 #include "VertexSource.h"
 
@@ -60,6 +59,7 @@ private:
     static Vector2                   ProcessVector2( NSString* line );
     static std::vector<NSString*>    ProcessFaceList( NSString* line );
     static std::vector<NSString*>    ProcessFaceListTriangle( NSString* line, BOOL firstEdge );
+	
 public:
 
     Matrix4                         m_ModelTransform;
@@ -70,6 +70,5 @@ public:
 	Vector3                       m_cornerList[999];
    
 };
-
 
 #endif

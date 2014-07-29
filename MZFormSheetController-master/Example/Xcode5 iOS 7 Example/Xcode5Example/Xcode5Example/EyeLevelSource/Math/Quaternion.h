@@ -1,6 +1,6 @@
 #ifndef QUATERNION_H
 #define QUATERNION_H
-
+#ifdef __cplusplus
 //#include "Maths.h"
 #include "Vector3.h"
 class Matrix33;
@@ -68,5 +68,5 @@ inline void Quaternion::identity()
 {
     w = 1.0f, v.x = v.y = v.z = 0.0f;
 }
-
+#endif
 #endif // QUATERNION_H

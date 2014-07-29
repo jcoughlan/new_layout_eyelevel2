@@ -67,7 +67,7 @@
 @property(nonatomic, readonly) CFTimeInterval lastTimestamp;
 
 @property(nonatomic, getter=isAdaptive) BOOL adaptive;
-@property(nonatomic, readonly) NSString *name;
+@property(weak, nonatomic, readonly) NSString *name;
 
 @end
 

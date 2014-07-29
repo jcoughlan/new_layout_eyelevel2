@@ -5,7 +5,7 @@
 /// @date	16 April 2011
 /// 
 //\=====================================================================================
-#include "GLModel.h"
+#include "GLModel.hpp"
 #include <stdio.h>
 
 #include <OpenGLES//ES2//gl.h>

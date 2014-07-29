@@ -3,7 +3,7 @@
 
 #include "Maths.h"
 
-
+#ifdef __cplusplus
 class Matrix33
 {
 public:
@@ -52,5 +52,5 @@ inline const float *Matrix33::operator[](int row) const
 {
     return i[row];
 }
-
+#endif
 #endif // MATRIX_33_H
